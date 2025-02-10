@@ -1,0 +1,28 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+{% block title%}جستجوی محصول{% endblock %}
+
+{% block content %}
+<div class="title"><h4>نتیجه جستجو</h4></div>
+<div class="products">
+    <div class="cardgroup">
+        {% if products %}
+            {% for p in products %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ p.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title" dir="rtl">{{ p.name }}</h5>
+                      <p class="card-text" dir="rtl">{{ p.desc }}</p>
+                      <a href="{% url 'product' p.pk p.slug %}" class="btn btn-secondary" dir="rtl">قیمت: {{ p.price }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>نتیجه ای یافت نشد!</h4>
+        {% endif %}
+
+
+
+    </div>
+</div>
+{% endblock %}

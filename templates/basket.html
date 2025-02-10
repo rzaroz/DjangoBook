@@ -1,0 +1,44 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+
+{% block title %}سبد خرید شما{% endblock %}
+{% block content %}
+<div class="products">
+    <div class="cardgroup">
+        {% if user_products %}
+            {% for pro in user_products %}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ pro.products.image.url }}" class="img-fluid rounded-start" alt="محصول">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pro.products.name }}</h5>
+                                <p class="card-text">{{ pro.products.desc }}</p>
+                                <p class="card-text">تعداد :{{ pro.count }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">قیمت: {{ pro.products.price }} تومان</span>
+                                    <form method="post" action="{% url 'del_cart' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ pro.pk }}" name="pk_cart_pro">
+                                        <button class="btn btn-danger">حذف از سبد</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>در حال حاضر سبد خرید شما خالی می باشد!</h4>
+        {% endif %}
+
+    </div>
+</div>
+<div class="container">
+    {% if user_products %}
+        <a class="btn btn-primary" href="#" role="button">تکمیل خرید {{ price }} تومان </a>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+
+{% block title %}محصولات تحویل داده شده{% endblock %}
+{% block content %}
+<div class="products">
+    <div class="cardgroup">
+        {% if user_products %}
+            {% for pro in user_products %}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ pro.products.image.url }}" class="img-fluid rounded-start" alt="محصول">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pro.products.name }}</h5>
+                                <p class="card-text">{{ pro.products.desc }}</p>
+                                <p class="card-text">تعداد :{{ pro.count }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">قیمت: {{ pro.products.price }} تومان</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>در حال حاضر شما محصولی خریداری نکرده اید!</h4>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

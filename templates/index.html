@@ -1,0 +1,26 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+
+{% block title %}صفحه اصلی{% endblock %}
+
+{% block content %}
+<div class="cover bg-light">
+    <h1>{{ intro | truncatechars:20 }}</h1>
+</div>
+<div class="title"><h4>جدید ترین ها</h4></div>
+    <div class="products">
+        <div class="cardgroup">
+            {% for p in last_pros %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ p.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" dir="rtl">{{ p.name }}</h5>
+                        <p class="card-text" dir="rtl">{{ p.desc }}</p>
+                        <a href="{% url 'product' p.pk p.slug %}" class="btn btn-secondary" dir="rtl">قیمت: {{ p.price }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

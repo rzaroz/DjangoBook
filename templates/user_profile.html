@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/product.css">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "yekan";
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .container {
+            width: 400px;
+            height: 300px;
+            background-color: gray;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            direction: rtl;
+        }
+        a {
+            padding: 5px;
+            background-color: rgb(61, 130, 177);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+    </style>
+    <title>صفحه کاربر</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h4>ایمیل:</h4>
+            <h3>{{ user }}</h3>
+        </div>
+        <div class="row">
+            <a href="{% url 'purchased' %}">
+                کالای های جاری
+            </a>
+            <a href="{% url 'done_pros' %}">کالای های تحویل داده شده</a>
+        </div>
+    </div>
+</body>
+</html>

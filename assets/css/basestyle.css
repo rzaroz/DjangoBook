@@ -1,0 +1,69 @@
+body {
+    color: white; /* White text */
+}
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar {
+    width: 90%;
+    background-color: #212529 !important; /* Dark navbar */
+}
+.navbar-brand, .nav-link, .dropdown-item {
+    color: white !important; /* White navbar text */
+}
+.form-control {
+    background-color: #495057; /* Dark input background */
+    color: white; /* White input text */
+}
+.form-control::placeholder {
+    color: #ced4da; /* Light placeholder text */
+}
+.btn-outline-success {
+    color: white; /* White button text */
+    border-color: white; /* White border */
+}
+.btn-outline-success:hover {
+    background-color: white; /* White background on hover */
+    color: black; /* Black text on hover */
+}
+.cover {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    direction: rtl;
+}
+.title {
+    width: 100%;
+    height: 90px;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+.products {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardgroup {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap !important;
+    gap: 20px;
+}
+.container {
+    padding: 50px;
+}
+h4 {
+    color: black;
+}

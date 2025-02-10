@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/basestyle.css' %}">
+    {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header class="bg-dark">
+        <div class="navbar">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#">SportShop</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'home' %}">صفحه اصلی</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">درباره ما</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        دسته بندی
+                      </a>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                            {% for cat in cats %}
+                                <a class="dropdown-item bg-dark d-flex justify-content-end align-items-center" href="{% url 'cats_url' cat.tag %}">{{ cat.name }}</a>
+                            {% endfor %}
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'profile' %}">صفحه کاربر</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'cart' %}">سبد خرید</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'pagination' %}">تمامی محصولات</a>
+                    </li>
+                  </ul>
+                  <form class="d-flex" action="{% url 'search' %}">
+                      {% if q %}
+                          <input class="form-control me-2" dir="rtl" type="search" placeholder="جسجو..." aria-label="Search" name="q" value="{{ q }}">
+                      {% else %}
+                          <input class="form-control me-2" dir="rtl" type="search" placeholder="جسجو..." aria-label="Search" name="q">
+                      {% endif %}
+
+                    <button class="btn btn-outline-success" type="submit">جسجو</button>
+                  </form>
+                    {% if username %}
+                        <a class="btn btn-secondary" type="button" href="{% url 'logout' %}">{{ username }}</a>
+                    {% else %}
+                        <a class="btn btn-secondary" type="button" href="{% url 'login' %}">ورود / ثبت نام</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p dir="rtl">&copy; طبق ماده ۱۲ فصل سوم قانون جرائم رایانه‌ای هرگونه کپی برداری از طرح قالب و مطالب تارنمای SportShop به هر نحو، پیگرد قانونی دارد</p>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

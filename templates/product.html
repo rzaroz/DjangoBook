@@ -1,0 +1,31 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+{% block head %}<link rel="stylesheet" href="{% static 'css/product.css' %}">{% endblock %}
+{% block title %}محصول{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="info">
+            <h1>
+                {{ pro.name }}
+            </h1>
+            <p>
+                {{ pro.desc }} | قیمت: {{ pro.price }} تومان
+            </p>
+
+            <form action="{% url 'add_cart' %}" method="post">
+                {% csrf_token %}
+                <p>تعداد:</p>
+                <input type="number" value="1" name="pro_count">
+                <input type="hidden" value="{{ pro.pk }}" name="pro_pk">
+                <button type="submit" class="btn btn-success">
+                    اضافه کردن به سبد خرید
+                </button>
+            </form>
+        </div>
+        <div class="image_pro">
+            <img src="{{ pro.image.url }}" alt="">
+        </div>
+    </div>
+</div>
+{% endblock %}

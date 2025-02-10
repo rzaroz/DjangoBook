@@ -1,0 +1,47 @@
+{% extends 'templates/base.html' %}
+{% load static %}
+
+{% block title%}تمامی محصولات{% endblock %}
+
+{% block content %}
+<div class="title"><h4>تمامی محصولات</h4></div>
+<div class="products">
+    <div class="cardgroup">
+
+        {% for p in products %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ p.image.url }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title" dir="rtl">{{ p.name }}</h5>
+                  <p class="card-text" dir="rtl">{{ p.desc }}</p>
+                  <a href="{% url 'product' p.pk p.slug %}" class="btn btn-secondary" dir="rtl">قیمت: {{ p.price }}</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+<div class="container">
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+
+            {% if products.has_previous  %}
+                <li class="page-item">
+                    <a class="page-link" href="/Products?page={{ products.previous_page_number }}" tabindex="-1">قبل</a>
+                  </li>
+                <li class="page-item"><a class="page-link" href="/Products?page={{ products.previous_page_number }}">{{ products.previous_page_number }}</a></li>
+            {% endif %}
+
+              <li class="page-item"><a class="page-link" href="/Products?page={{ products.number }}">{{ products.number }}</a></li>
+
+            {% if products.has_next  %}
+                <li class="page-item"><a class="page-link" href="/Products?page={{ products.paginator.num_pages }}">{{ products.paginator.num_pages }}</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="/Products?page={{ products.paginator.num_pages }}">بعد</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</div>
+{% endblock %}
